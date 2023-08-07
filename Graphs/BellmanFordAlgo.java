@@ -29,7 +29,22 @@ public class BellmanFordAlgo {
 
     }
 
-    public static void bellmanFOrd(ArrayList<Edge>[] graph, int src) {// O(V*E)
+    public static void createGraph2(ArrayList<Edge> graph) {
+
+        graph.add(new Edge(0, 1, 2));
+        graph.add(new Edge(0, 2, 4));
+
+        graph.add(new Edge(1, 2, -4));
+
+        graph.add(new Edge(2, 3, 2));
+
+        graph.add(new Edge(3, 4, 4));
+
+        graph.add(new Edge(4, 1, -1));
+
+    }
+
+    public static void bellmanFord(ArrayList<Edge>[] graph, int src) {// O(V*E)
         int dist[] = new int[graph.length];
 
         for (int i = 0; i < dist.length; i++) {
@@ -60,11 +75,47 @@ public class BellmanFordAlgo {
         }
     }
 
+    public static void bellmanFord2(ArrayList<Edge> graph, int src, int V) {// O(V*E)
+        int dist[] = new int[V];
+
+        for (int i = 0; i < dist.length; i++) {
+            if (i != src) {
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        // O(v)
+        for (int i = 0; i < V - 1; i++) {
+            // O(E)
+            for (int j = 0; j < graph.size(); j++) {
+                Edge e = graph.get(j);
+
+                int u = e.src;
+                int v = e.dest;
+                int wt = e.wt;
+
+                if (dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v])
+                    dist[v] = dist[u] + wt;
+            }
+
+        }
+        for (int i = 0; i < dist.length; i++) {
+            System.out.print(dist[i] + " ");
+        }
+    }
+
     public static void main(String[] args) {
         int V = 5;
         ArrayList<Edge>[] graph = new ArrayList[V];
 
         createGraph(graph);
-        bellmanFOrd(graph, 0);
+        bellmanFord(graph, 0);
+
+        // Second Way
+        System.out.println();
+        ArrayList<Edge> allEdges = new ArrayList<>();
+        createGraph2(allEdges);
+        bellmanFord2(allEdges, 0, V);
+
     }
 }
