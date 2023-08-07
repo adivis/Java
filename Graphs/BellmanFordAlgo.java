@@ -29,7 +29,7 @@ public class BellmanFordAlgo {
 
     }
 
-    public static void bellmanFOrd(ArrayList<Edge>[] graph, int src) {
+    public static void bellmanFOrd(ArrayList<Edge>[] graph, int src) {// O(V*E)
         int dist[] = new int[graph.length];
 
         for (int i = 0; i < dist.length; i++) {
@@ -39,8 +39,9 @@ public class BellmanFordAlgo {
         }
 
         int V = graph.length;
-
+        // O(v)
         for (int i = 0; i < V - 1; i++) {
+            // O(E)
             for (int j = 0; j < graph.length; j++) {
                 for (int j2 = 0; j2 < graph[j].size(); j2++) {
                     Edge e = graph[j].get(j2);
