@@ -1,5 +1,5 @@
 public class RodCutting {
-
+    // weight = length , val =>price, w=>totRod
     public static int rotCut(int length[], int price[], int rodLength) {
         int n = length.length;
         int dp[][] = new int[n + 1][rodLength + 1];
