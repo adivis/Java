@@ -1,7 +1,11 @@
 Hashing/*.class
+DP/*.class
 Graphs/*.class
 Tries/*.class
 demo.java
-demo.class
+*.class
+*.js
+*.cpp*
 demo.cpp
 a.exe
+*json*
